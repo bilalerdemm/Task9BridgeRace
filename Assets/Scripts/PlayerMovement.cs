@@ -13,10 +13,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (backGround.activeInHierarchy)
         {
+            playerAnim.SetBool("isRunning", true);
             Vector3 direction = Vector3.forward * floatingJoystick.Vertical + Vector3.right * floatingJoystick.Horizontal;
             transform.position += direction * speed * Time.deltaTime;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 10f * Time.deltaTime);
-            playerAnim.SetBool("isRunning", true);
         }
         else
         {
