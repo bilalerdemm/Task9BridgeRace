@@ -229,6 +229,7 @@ MonoBehaviour:
   floatingJoystick: {fileID: 536163868}
   backGround: {fileID: 536163867}
   speed: 5
+  playerAnim: {fileID: 71571964}
 --- !u!95 &71571964
 Animator:
   serializedVersion: 5
