@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Blue
+  - Checker
+  - Stair
+  - StairBlue
   layers:
   - Default
   - TransparentFX

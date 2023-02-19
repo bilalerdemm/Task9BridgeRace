@@ -43,5 +43,33 @@ public class PlayerGameController : MonoBehaviour
             other.gameObject.transform.localRotation = spawnPoint.transform.localRotation;
             spawnPoint.transform.position += new Vector3(0, .13f, 0);
         }
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Checker"))
+        {
+            Debug.Log("Checker Trigger");
+            if (collectedStairs.Count > 0)
+            {
+                collision.gameObject.transform.position += new Vector3(0, 0, 1.95f);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Stair"))
+        {
+            if (collectedStairs.Count > 0)
+            {
+                if (!collision.gameObject.CompareTag("StairBlue"))
+                {
+                    Destroy(collectedStairs[collectedStairs.Count - 1].gameObject);
+                    collectedStairs.RemoveAt(collectedStairs.Count - 1);
+                }
+                collision.gameObject.transform.GetComponent<MeshRenderer>().enabled = true;
+                collision.transform.tag = "StairBlue";
+
+
+            }
+        }
     }
 }
