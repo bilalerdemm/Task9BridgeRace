@@ -6,10 +6,10 @@ using Cinemachine;
 
 public class PlayerGameController : MonoBehaviour
 {
-    public GameObject spawnPoint;
+    public GameObject spawnPoint, checker;
     public CinemachineVirtualCamera myCam;
     public Vector3 firstSpawnPointPos;
-    public List<GameObject> collectedStairs;
+    public List<GameObject> collectedStairs, paintedStairs;
     public Rigidbody rb;
 
 
@@ -31,6 +31,16 @@ public class PlayerGameController : MonoBehaviour
             //camera.transform.DOMove(new Vector3( camera.transform.position.x, 9,camera.transform.position.z), 1f);
             //myCam.transform.DORotate(new Vector3(38, 0, 0), 1f);
         }
+        //CHECKERIN GERI DONMESI ICIN BASLANDI
+        //if (paintedStairs.Count > 0)
+        //{
+        //    float distance = Vector3.Distance(checker.transform.position, paintedStairs[paintedStairs.Count - 1].gameObject.transform.position);
+        //    if (distance > 0.5f)
+        //    {
+        //        checker.transform.position = collectedStairs[collectedStairs.Count - 1].gameObject.transform.position + new Vector3(0, 0, 1);
+        //    }
+        //}
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -62,6 +72,7 @@ public class PlayerGameController : MonoBehaviour
             {
                 if (!collision.gameObject.CompareTag("StairBlue"))
                 {
+                    paintedStairs.Add(collectedStairs[collectedStairs.Count - 1].gameObject);
                     Destroy(collectedStairs[collectedStairs.Count - 1].gameObject);
                     collectedStairs.RemoveAt(collectedStairs.Count - 1);
                 }
@@ -69,6 +80,16 @@ public class PlayerGameController : MonoBehaviour
                 collision.transform.tag = "StairBlue";
 
 
+            }
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("StairBlue"))
+        {
+            if (collectedStairs.Count > 1)
+            {
+                spawnPoint.transform.localPosition = collectedStairs[collectedStairs.Count - 1].gameObject.transform.localPosition;
             }
         }
     }
