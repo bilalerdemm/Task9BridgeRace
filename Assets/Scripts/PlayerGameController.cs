@@ -10,14 +10,13 @@ public class PlayerGameController : MonoBehaviour
     public CinemachineVirtualCamera myCam;
     public Vector3 firstSpawnPointPos;
     public List<GameObject> collectedStairs;
-    
+    public Rigidbody rb;
+
+
     private void Awake()
     {
         firstSpawnPointPos = spawnPoint.transform.localPosition;
-    }
-    private void Start()
-    {
-        
+        rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
@@ -25,12 +24,12 @@ public class PlayerGameController : MonoBehaviour
         {
             spawnPoint.transform.localPosition = firstSpawnPointPos;
         }
+        //Kamera acisinin toplananlara gore degismesi 
         if (collectedStairs.Count > 10)
         {
             //camera.transform.DOLocalMoveY(25, 1);
             //camera.transform.DOMove(new Vector3( camera.transform.position.x, 9,camera.transform.position.z), 1f);
-            myCam.transform.DORotate(new Vector3(38, 0, 0), 1f);
-            
+            //myCam.transform.DORotate(new Vector3(38, 0, 0), 1f);
         }
     }
     private void OnTriggerEnter(Collider other)
