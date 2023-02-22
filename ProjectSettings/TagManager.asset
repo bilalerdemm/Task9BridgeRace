@@ -8,6 +8,8 @@ TagManager:
   - Checker
   - Stair
   - StairBlue
+  - Green
+  - Purple
   layers:
   - Default
   - TransparentFX
