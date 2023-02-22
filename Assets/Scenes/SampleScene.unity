@@ -8458,15 +8458,15 @@ MonoBehaviour:
   cubes:
   - name: BlueCube
     Prefab: {fileID: 144858127384895597, guid: 9f99d9034ce302448bfc05616197051a, type: 3}
-    Chance: 41
+    Chance: 30
     weight: 0
   - name: GreenCube
     Prefab: {fileID: 144858127384895597, guid: 80ca89a559cacad43a2b9de00d47cf77, type: 3}
-    Chance: 41
+    Chance: 37
     weight: 0
   - name: PurpleCube
     Prefab: {fileID: 144858127384895597, guid: 4e4cd43afdaa77948935d521392f7a63, type: 3}
-    Chance: 41
+    Chance: 30
     weight: 0
   minX: -10
   maxX: 10
@@ -9110,15 +9110,15 @@ MonoBehaviour:
   cubes:
   - name: BlueCube
     Prefab: {fileID: 144858127384895597, guid: 9f99d9034ce302448bfc05616197051a, type: 3}
-    Chance: 20
+    Chance: 43
     weight: 0
   - name: GreenCube
     Prefab: {fileID: 144858127384895597, guid: 80ca89a559cacad43a2b9de00d47cf77, type: 3}
-    Chance: 15
+    Chance: 23
     weight: 0
   - name: PurpleCube
     Prefab: {fileID: 144858127384895597, guid: 4e4cd43afdaa77948935d521392f7a63, type: 3}
-    Chance: 15
+    Chance: 25
     weight: 0
   minX: -10
   maxX: 10
