@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -19,6 +20,8 @@ public class Cube
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Cube[] cubes;
+    public float minX, maxX, y, minZ, maxZ;
+    public GameObject blueCube, greenCube, purpleCube;
 
     private void Awake()
     {
@@ -30,15 +33,50 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 200; i++)
+        RandomCube();
+    }
+    private void Update()
+    {
+        if (GameManager.instance.blueList.Count < 10)
         {
-            SpawnRandomCubes(new Vector3(Random.Range(-10, 10), 0.1f, Random.Range(-5   , 8)));
+            RandomCube();
         }
     }
+    private void RandomCube()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            SpawnRandomCubes(new Vector3(Random.Range(minX, maxX), y, Random.Range(minZ, maxZ)));
+        }
+    }
+    //public void BlueRandomCube()
+    //{
+    //    for (int i = 0; i < 50; i++)
+    //    {
+    //        BlueCubeSpawner(new Vector3(Random.Range(minX, maxX), y, Random.Range(minZ, maxZ)));
+    //    }
+    //}
+    //public void BlueCubeSpawner(Vector3 position)
+    //{
+    //    Instantiate(blueCube, position, Quaternion.identity, transform);
+    //}
     private void SpawnRandomCubes(Vector3 position)
     {
         Cube randomCube = cubes[GetRandomCubeIndex()];
-        Instantiate(randomCube.Prefab, position, Quaternion.identity); 
+        Instantiate(randomCube.Prefab, position, Quaternion.identity, transform);
+        Debug.Log("color= " + randomCube.name + ">*</color> Change: <b>" + randomCube.Chance + "</b>%");
+        if (randomCube.name == "BlueCube")
+        {
+            GameManager.instance.blueList.Add(randomCube.Prefab);
+        }
+        if (randomCube.name == "GreenCube")
+        {
+            GameManager.instance.greenList.Add(randomCube.Prefab);
+        }
+        if (randomCube.name == "PurpleCube")
+        {
+            GameManager.instance.purpleList.Add(randomCube.Prefab);
+        }
     }
 
     private int GetRandomCubeIndex()
@@ -47,7 +85,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < cubes.Length; i++)
             if (cubes[i].weight >= r)
                 return i;
-        return 0;          
+        return 0;
     }
 
     private void CalculateWights()

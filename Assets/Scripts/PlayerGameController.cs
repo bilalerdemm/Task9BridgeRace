@@ -47,13 +47,13 @@ public class PlayerGameController : MonoBehaviour
         if (other.gameObject.CompareTag("Blue"))
         {
             collectedStairs.Add(other.gameObject);
+            GameManager.instance.blueList.RemoveAt(0);
             other.gameObject.transform.parent = transform;
             //other.gameObject.transform.DOMove(spawnPoint.transform.position,1f);
             other.gameObject.transform.DOLocalJump(spawnPoint.transform.localPosition, .5f, 1, 1f);
             other.gameObject.transform.localRotation = spawnPoint.transform.localRotation;
             spawnPoint.transform.position += new Vector3(0, .13f, 0);
         }
-
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -78,8 +78,6 @@ public class PlayerGameController : MonoBehaviour
                 }
                 collision.gameObject.transform.GetComponent<MeshRenderer>().enabled = true;
                 collision.transform.tag = "StairBlue";
-
-
             }
         }
     }
